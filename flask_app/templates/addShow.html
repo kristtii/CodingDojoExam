@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Show</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid justify-content-between">
+          <h1 class="me-2" type="button">Welcome {{loggedUser.first_name}}</h1>
+          <div>
+             <a href="/" class="btn btn-sm btn-primary" type="button">TV Shows</a>
+            <a href="/logout" class="btn btn-sm btn-danger" type="button">Logout</a>
+          </div>
+        </div>
+    </nav>
+    <form action="/create/show" method="post" class="w-75 m-auto p-5">
+        <div class="col-lg-15">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title">
+            </div>
+            {% with messages = get_flashed_messages(category_filter=["title"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="text-danger text-center">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="col-lg-15">
+            <div class="mb-3">
+              <label for="network" class="form-label">Network</label>
+              <input type="text" class="form-control" name="network">
+            </div>
+            {% with messages = get_flashed_messages(category_filter=["network"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="text-danger text-center">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="col-lg-15">
+            <div class="mb-3">
+                <label for="release_date" class="form-label">Release Date</label>
+                <input type="date" class="form-control" name="release_date">
+            </div>
+            {% with messages = get_flashed_messages(category_filter=["release_date"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="text-danger text-center">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" name="description" id="" cols="30" rows="5"></textarea>
+            </div>
+            {% with messages = get_flashed_messages(category_filter=["description"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <p class="text-danger text-center">{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+</body>
+</html>
